@@ -1,0 +1,23 @@
+/* App-level overrides and layout helpers */
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding-bottom: 0;
+}
+
+/* Consistent container padding */
+section {
+  padding: 80px 0 !important;
+}
+
+@media (max-width: 900px) {
+  section {
+    padding: 60px 0 !important;
+  }
+}
