@@ -52,7 +52,7 @@ export default function Contact() {
               <Paper
                 elevation={0}
                 sx={{
-                  p: 3.5,
+                  p: { xs: 2, md: 3.5 },
                   borderRadius: '12px',
                   backgroundColor: 'rgba(0, 217, 255, 0.08)',
                   border: '1px solid rgba(0, 217, 255, 0.3)',
@@ -63,10 +63,10 @@ export default function Contact() {
                   }
                 }}
               >
-                <Stack direction="row" spacing={2} alignItems="flex-start">
-                  <EmailIcon sx={{ color: '#00d9ff', fontSize: '1.8rem', mt: 0.5 }} />
-                  <Box>
-                    <Typography variant="h6" sx={{ mb: 1, fontSize: '1.1rem', fontWeight: 700 }}>
+                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1.5, sm: 2 }} alignItems={{ xs: 'flex-start', sm: 'flex-start' }}>
+                  <EmailIcon sx={{ color: '#00d9ff', fontSize: { xs: '1.5rem', md: '1.8rem' }, flexShrink: 0, mt: { xs: 0, sm: 0.5 } }} />
+                  <Box sx={{ minWidth: 0 }}>
+                    <Typography variant="h6" sx={{ mb: 0.5, fontSize: { xs: '1rem', md: '1.1rem' }, fontWeight: 700 }}>
                       Email
                     </Typography>
                     <Link
@@ -74,8 +74,9 @@ export default function Contact() {
                       sx={{
                         color: '#cbd5f5',
                         textDecoration: 'none',
-                        fontSize: '1.05rem',
+                        fontSize: { xs: '0.9rem', md: '1.05rem' },
                         transition: 'color 0.3s ease',
+                        wordBreak: 'break-word',
                         '&:hover': {
                           color: '#00d9ff'
                         }
@@ -90,7 +91,7 @@ export default function Contact() {
               <Paper
                 elevation={0}
                 sx={{
-                  p: 3.5,
+                  p: { xs: 2, md: 3.5 },
                   borderRadius: '12px',
                   backgroundColor: 'rgba(0, 188, 212, 0.08)',
                   border: '1px solid rgba(0, 188, 212, 0.3)',
@@ -101,16 +102,16 @@ export default function Contact() {
                   }
                 }}
               >
-                <Stack direction="row" spacing={2} alignItems="flex-start">
-                  <PhoneIcon sx={{ color: '#00bcd4', fontSize: '1.8rem', mt: 0.5 }} />
-                  <Box>
-                    <Typography variant="h6" sx={{ mb: 1, fontSize: '1.1rem', fontWeight: 700 }}>
+                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1.5, sm: 2 }} alignItems={{ xs: 'flex-start', sm: 'flex-start' }}>
+                  <PhoneIcon sx={{ color: '#00bcd4', fontSize: { xs: '1.5rem', md: '1.8rem' }, flexShrink: 0, mt: { xs: 0, sm: 0.5 } }} />
+                  <Box sx={{ minWidth: 0 }}>
+                    <Typography variant="h6" sx={{ mb: 0.5, fontSize: { xs: '1rem', md: '1.1rem' }, fontWeight: 700 }}>
                       Phone
                     </Typography>
                     <Typography
                       sx={{
                         color: '#cbd5f5',
-                        fontSize: '1.05rem'
+                        fontSize: { xs: '0.9rem', md: '1.05rem' }
                       }}
                     >
                       +94 72 568 2258
