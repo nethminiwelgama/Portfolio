@@ -84,7 +84,7 @@ export default function Hero() {
             Hi, I'm Nethmini
             <br />
             <span style={{ background: 'linear-gradient(135deg, #00d9ff 0%, #00bcd4 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Software Engineer
+              Aspiring Software Engineer
             </span>
           </Typography>
 
