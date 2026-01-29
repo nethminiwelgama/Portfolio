@@ -41,7 +41,7 @@ export default function Hero() {
       }}
     >
       <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: { xs: 'flex-start', md: 'center' }, flexWrap: { xs: 'wrap', md: 'nowrap' }, width: '100%', gap: { md: 6 }, px: { xs: 2, sm: 3 }, justifyContent: { md: 'space-between' } }}>
-        <Stack spacing={3.5} sx={{ flex: { xs: '1 1 100%', md: '1 1 50%' }, maxWidth: { md: 580 }, width: '100%', justifyContent: { md: 'center' } }}>
+        <Stack spacing={3.5} sx={{ flex: { xs: '1 1 100%', md: '1 1 50%' }, maxWidth: { md: 580 }, width: '100%', justifyContent: { md: 'center' }, ml: '1cm' }}>
           <Typography
             component="span"
             sx={{
