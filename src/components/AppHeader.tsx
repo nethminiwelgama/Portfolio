@@ -46,25 +46,27 @@ export default function AppHeader() {
       >
         <Container maxWidth="lg" disableGutters>
           <Toolbar sx={{ py: 2, px: { xs: 2, sm: 3, md: 4 } }}>
-            {/* Logo */}
+            {/* Logo / Name */}
             <Typography
               variant="h6"
-              component="div"
+              component="a"
+              href="#home"
               sx={{
                 flexGrow: 1,
                 fontWeight: 900,
                 letterSpacing: -1,
-                fontSize: { xs: '1.3rem', sm: '1.5rem' },
+                fontSize: { xs: '1.2rem', sm: '1.4rem' },
                 background: 'linear-gradient(135deg, #00d9ff 0%, #00bcd4 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 transition: 'transform 0.3s ease',
+                textDecoration: 'none',
                 '&:hover': {
                   transform: 'scale(1.05)'
                 }
               }}
             >
-              Nethmini
+              Nethmini Welgama
             </Typography>
 
             {/* Desktop Navigation */}

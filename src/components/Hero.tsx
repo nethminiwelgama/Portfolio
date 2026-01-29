@@ -1,100 +1,92 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import { Box, Typography, Button, Stack, Container } from '@mui/material'
 import HeroBg from '../assets/herobg.jpg'
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
+import { HeroRobotScene } from './HeroRobotScene'
+import RobotSpeechBubble from './RobotSpeechBubble'
 
 const HERO_SUBTITLE =
   'Software Engineer Intern & third-year B.Sc. (Hons) Information Technology student at University of Moratuwa. Building scalable full-stack applications with React, TypeScript, Spring Boot, .NET and Docker.'
 
 export default function Hero() {
+  const [cursorNorm, setCursorNorm] = useState<{ x: number; y: number } | null>(null)
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect()
+      const x = (e.clientX - rect.left) / rect.width
+      const y = (e.clientY - rect.top) / rect.height
+      setCursorNorm({ x, y })
+    },
+    []
+  )
+
+  const handleMouseLeave = useCallback(() => setCursorNorm(null), [])
+
   return (
     <Box
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       sx={{
         minHeight: { xs: '80vh', md: '90vh' },
         position: 'relative',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: { xs: 'flex-start', md: 'center' },
         overflow: 'hidden',
-        mt: 10,
+        pt: { xs: 3, md: 0 },
         background: `linear-gradient(135deg, rgba(10,14,39,0.95) 0%, rgba(10,14,39,0.85) 40%, rgba(10,14,39,0.9) 100%), url(${HeroBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
       }}
     >
-      {/* Animated gradient orbs */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '-10%',
-          right: '-5%',
-          width: '400px',
-          height: '400px',
-          background: 'radial-gradient(circle, rgba(0,217,255,0.2) 0%, rgba(0,217,255,0) 70%)',
-          borderRadius: '50%',
-          filter: 'blur(40px)',
-          animation: 'float 6s ease-in-out infinite'
-        }}
-      />
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: '-10%',
-          left: '10%',
-          width: '300px',
-          height: '300px',
-          background: 'radial-gradient(circle, rgba(0,188,212,0.15) 0%, rgba(0,188,212,0) 70%)',
-          borderRadius: '50%',
-          filter: 'blur(40px)',
-          animation: 'float 8s ease-in-out infinite reverse'
-        }}
-      />
-
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-        <Stack spacing={4} sx={{ maxWidth: { xs: 600, md: 700, lg: 800 } }}>
-          <Box>
-            <Typography
-              variant="overline"
-              sx={{
-                letterSpacing: 4,
-                background: 'linear-gradient(135deg, #00d9ff 0%, #00bcd4 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                fontSize: { xs: '0.85rem', md: '0.95rem' },
-                fontWeight: 700,
-                mb: 2,
-                display: 'inline-block'
-              }}
-            >
-              WELCOME TO MY PORTFOLIO
-            </Typography>
-          </Box>
+      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: { xs: 'flex-start', md: 'center' }, flexWrap: { xs: 'wrap', md: 'nowrap' }, width: '100%', gap: { md: 6 }, px: { xs: 2, sm: 3 }, justifyContent: { md: 'space-between' } }}>
+        <Stack spacing={3.5} sx={{ flex: { xs: '1 1 100%', md: '1 1 50%' }, maxWidth: { md: 580 }, width: '100%', justifyContent: { md: 'center' } }}>
+          <Typography
+            component="span"
+            sx={{
+              fontSize: { xs: '0.85rem', md: '0.9rem' },
+              fontWeight: 500,
+              letterSpacing: 3,
+              color: 'rgba(0, 217, 255, 0.9)',
+              textTransform: 'uppercase',
+              display: 'block'
+            }}
+          >
+            Portfolio
+          </Typography>
 
           <Typography
             variant="h1"
             component="h1"
             sx={{
-              fontSize: { xs: '2.8rem', md: '3.8rem', lg: '4.5rem' },
-              fontWeight: 800,
-              letterSpacing: -1,
-              lineHeight: 1.15,
-              color: '#ffffff'
+              fontSize: { xs: '2.5rem', md: '3.25rem', lg: '3.75rem' },
+              fontWeight: 600,
+              letterSpacing: '-0.02em',
+              lineHeight: 1.25,
+              color: '#fff'
             }}
           >
-            Hi, I'm Nethmini
+            Hi, I'm Nethmini —
             <br />
-            <span style={{ background: 'linear-gradient(135deg, #00d9ff 0%, #00bcd4 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Aspiring Software Engineer
-            </span>
+            <Box
+              component="span"
+              sx={{
+                color: 'rgba(0, 217, 255, 0.95)',
+                fontWeight: 500
+              }}
+            >
+              software engineer
+            </Box>
           </Typography>
 
           <Typography
             variant="body1"
             sx={{
-              maxWidth: 700,
-              fontSize: { xs: '1.05rem', md: '1.15rem' },
-              lineHeight: 1.8,
-              color: '#cbd5f5',
+              maxWidth: 540,
+              fontSize: { xs: '1rem', md: '1.1rem' },
+              lineHeight: 1.75,
+              color: 'rgba(203, 213, 245, 0.9)',
               fontWeight: 400
             }}
           >
@@ -104,72 +96,67 @@ export default function Hero() {
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
             spacing={2}
-            sx={{ mt: 2 }}
+            sx={{ pt: 0.5 }}
           >
             <Button
               variant="contained"
-              color="primary"
-              size="large"
               href="#projects"
-              endIcon={<ArrowOutwardIcon />}
+              endIcon={<ArrowOutwardIcon sx={{ fontSize: '1.1rem' }} />}
               sx={{
-                px: 4,
+                px: 3,
                 py: 1.5,
-                fontSize: '1.05rem',
-                fontWeight: 600,
-                borderRadius: '8px',
-                background: 'linear-gradient(135deg, #00d9ff 0%, #00bcd4 100%)',
-                color: '#000',
-                transition: 'all 0.3s ease',
+                fontSize: '1rem',
+                fontWeight: 500,
+                borderRadius: '6px',
+                background: 'rgba(0, 217, 255, 0.9)',
+                color: '#0a0e27',
+                textTransform: 'none',
+                transition: 'all 0.2s ease',
                 '&:hover': {
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 12px 35px rgba(0, 217, 255, 0.35)'
+                  background: 'rgba(0, 217, 255, 1)',
+                  boxShadow: '0 4px 20px rgba(0, 217, 255, 0.25)'
                 }
               }}
             >
-              View My Work
+              View work
             </Button>
             <Button
-              variant="outlined"
-              size="large"
+              variant="text"
               href="#contact"
               sx={{
-                px: 4,
+                px: 3,
                 py: 1.5,
-                fontSize: '1.05rem',
-                fontWeight: 600,
-                borderRadius: '8px',
-                borderColor: 'rgba(0, 217, 255, 0.5)',
-                color: '#00d9ff',
-                transition: 'all 0.3s ease',
+                fontSize: '1rem',
+                fontWeight: 500,
+                color: 'rgba(203, 213, 245, 0.9)',
+                textTransform: 'none',
+                transition: 'color 0.2s ease',
                 '&:hover': {
-                  borderColor: '#00d9ff',
-                  backgroundColor: 'rgba(0, 217, 255, 0.1)',
-                  transform: 'translateY(-2px)'
+                  color: '#00d9ff',
+                  backgroundColor: 'transparent'
                 }
               }}
             >
-              Get in Touch
+              Get in touch
             </Button>
           </Stack>
 
-          <Stack direction="row" spacing={1.5} sx={{ mt: 2 }}>
+          <Stack direction="row" spacing={2.5} sx={{ pt: 0.5 }}>
             <Button
               href="https://www.linkedin.com/in/nethminiwelgama"
               target="_blank"
               rel="noreferrer"
               sx={{
                 textTransform: 'none',
-                fontSize: '1rem',
+                fontSize: '0.95rem',
                 fontWeight: 500,
-                color: '#cbd5f5',
-                transition: 'color 0.3s ease',
-                '&:hover': {
-                  color: '#00d9ff'
-                }
+                color: 'rgba(203, 213, 245, 0.8)',
+                minWidth: 0,
+                px: 0,
+                '&:hover': { color: '#00d9ff', backgroundColor: 'transparent' }
               }}
             >
-              LinkedIn →
+              LinkedIn
             </Button>
             <Button
               href="https://github.com/nethminiwelgama"
@@ -177,27 +164,35 @@ export default function Hero() {
               rel="noreferrer"
               sx={{
                 textTransform: 'none',
-                fontSize: '1rem',
+                fontSize: '0.95rem',
                 fontWeight: 500,
-                color: '#cbd5f5',
-                transition: 'color 0.3s ease',
-                '&:hover': {
-                  color: '#00d9ff'
-                }
+                color: 'rgba(203, 213, 245, 0.8)',
+                minWidth: 0,
+                px: 0,
+                '&:hover': { color: '#00d9ff', backgroundColor: 'transparent' }
               }}
             >
-              GitHub →
+              GitHub
             </Button>
           </Stack>
         </Stack>
-      </Container>
 
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) translateX(0px); }
-          50% { transform: translateY(-30px) translateX(20px); }
-        }
-      `}</style>
+        <Box
+          sx={{
+            flex: { xs: '1 1 100%', md: '1 1 50%' },
+            display: { xs: 'none', md: 'flex' },
+            height: { md: '75vh' },
+            minHeight: { md: 480 },
+            position: 'relative',
+            alignItems: 'center',
+            justifyContent: 'center',
+            maxWidth: { md: 520 }
+          }}
+        >
+          <RobotSpeechBubble />
+          <HeroRobotScene cursorNorm={cursorNorm} />
+        </Box>
+      </Container>
     </Box>
   )
 }
